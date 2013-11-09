@@ -9,9 +9,9 @@ class UsersController < ApplicationController
 		})
 		
 		base_id = 0
-		message = Message.where('created_at > ?', Time.now)
-		if (message.empty?)
-			base_id = Message.last.id
+		message = Message.where('created_at > ?', Time.now).order('id DESC').last
+		if (!message.nil?)
+			base_id = message.id
 		end
 		base_id ||= 0
 		base_id = message.first.id if (!message.empty?) 
