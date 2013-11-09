@@ -31,7 +31,8 @@ class MessagesController < ApplicationController
 	end
 	
 	
-	def msg
+	def messenger
+		render :layout => false
 	end
 	
 end

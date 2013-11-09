@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 	
 	
 	def get_users
-		users = User.where('updated_at > ?', Time.now - 10)
+		users = User.where('updated_at > ?', Time.now - 10).order('id DESC')
 		data = []
 		users.each do |user|
 			data.push({:id=>user.id, :avatar=>user.avatar, :handle=>user.handle})
