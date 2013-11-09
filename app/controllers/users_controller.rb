@@ -13,6 +13,8 @@ class UsersController < ApplicationController
 		if (!message.nil?)
 			base_id = message.id
 		end
+		
+		base_id = Message.last.id if (Message.count > 0)
 		base_id ||= 0
 		
 		
