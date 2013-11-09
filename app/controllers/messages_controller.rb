@@ -24,7 +24,7 @@ class MessagesController < ApplicationController
 		data = []
 		messages.each do |message|
 			user = User.find_by_id(message.user_id)
-			data.push({:message=>message.message, :id=>message.id, :handle=>user.handle, :type=>message.msg_type})
+			data.push({:message=>message.message.to_s, :id=>message.id, :handle=>user.handle, :type=>message.msg_type})
 		end
 		
 		render :json=>{:success=>true, :msg=>data}
