@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 			base_id = message.id
 		end
 		base_id ||= 0
-		base_id = message.first.id if (!message.empty?) 
+		
 		
 		render :json=>{:success=>true, :msg=>user.id, :base_id=>base_id}
 	end
