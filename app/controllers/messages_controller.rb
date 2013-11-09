@@ -30,4 +30,8 @@ class MessagesController < ApplicationController
 		render :json=>{:success=>true, :msg=>data}
 	end
 	
+	
+	def msg
+	end
+	
 end

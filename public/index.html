@@ -1,0 +1,69 @@
+<html>
+	<head>	
+		<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+	</head>
+	
+	<body>
+		<div>
+			Handle: <input id="handle" />
+		</div>
+		
+		<div>
+			Avatar:
+			<select id="avatar">
+				<option value="anonymous">Mr. Anonymous</option>
+				<option value="batman">Batman</option>
+				<option value="tux" selected>Robo-Tux</option>
+				<option value="mask">Masked Man</option>
+				<option value="gumball">Gumball</option>
+				<option value="kirby">kirby</option>
+			</select>
+		</div>
+		
+		<div>
+			Message: <input id="message" />
+		</div>
+		
+		<div>
+			<button onclick="send(0);">Text</button>
+			<button onclick="send(1);">Voice-gram</button>
+		</div>
+		
+		<script>
+		function send(type) {
+				if (!check_req()) return false;
+				
+				var handle = $('#handle').val();
+				var avatar = $('#avatar').val();
+				var message = $('#message').val();
+				
+				var id = 0;
+				
+				$.get('/users/join', {handle:handle, avatar:avatar}, function(response) {
+					id = response.msg;
+					$.get('/messages/send_msg', {user_id:id, chatroom_id:0, msg_type:type, msg:message}, function(response) {
+					});
+				});
+				
+				
+			}
+			
+			function check_req() {
+				if ($('#handle').val().trim().length == 0) {
+					alert('Handle is required.');
+					return false;
+				}
+				
+				if ($('#message').val().trim().length == 0) {
+					alert('Message is required.');
+					return false;
+				}
+				
+				return true;
+			}
+		$(document).ready(function() {
+			
+		});
+		</script>
+	</body>
+</html>
